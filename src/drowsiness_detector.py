@@ -1,15 +1,11 @@
 import cv2
 import mediapipe as mp
 import time
-from config.config import FACE_CASCADE_PATH, EYE_CASCADE_PATH, EYE_AR_THRESH, EYE_AR_CONSEC_FRAMES
-from src.detectors import FaceDetector, EyeDetector
 from src.eye_status import EyeStatus
 
 
 class DrowsinessDetector:
     def __init__(self):
-        self.face_detector = FaceDetector(FACE_CASCADE_PATH)  # You might remove this if not needed with mediapipe
-        self.eye_detector = EyeDetector(EYE_CASCADE_PATH)  # Similarly, remove if not needed with mediapipe
         self.eye_status = EyeStatus()
         self.mp_face_mesh = mp.solutions.face_mesh
         self.face_mesh = self.mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1,
@@ -42,12 +38,12 @@ class DrowsinessDetector:
                     left_eye, right_eye = self.get_eye_landmarks(face_landmarks, frame.shape)
 
                     # Calculate eye aspect ratio for left and right eyes
-                    leftEAR = EyeStatus.calculate_polygon_area(left_eye)
-                    rightEAR = EyeStatus.calculate_polygon_area(right_eye)
+                    leftEAR = EyeStatus.calculate_polygon_area(vertices=left_eye)
+                    rightEAR = EyeStatus.calculate_polygon_area(vertices=right_eye)
 
                     # Calculate average eye aspect ratio
                     ear = (leftEAR + rightEAR) / 2.0
-                    #print(f'EAR: {ear}')
+                    print(f'EAR: {ear}')
 
                     # Check for drowsiness
                     if self.eye_status.is_drowsy(ear):

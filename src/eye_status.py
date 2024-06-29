@@ -4,7 +4,8 @@ class EyeStatus:
     def __init__(self):
         self.frame_count = 0
 
-    def calculate_polygon_area(self, vertices):
+    @staticmethod
+    def calculate_polygon_area(vertices):
         # Ensure the vertices form a closed loop by repeating the first vertex at the end
         vertices = vertices + [vertices[0]]  # Closing the loop
         n = len(vertices)

@@ -14,8 +14,6 @@ This project aims to detect drowsiness in real-time using a webcam. It utilizes 
 - Python 3.6+
 - OpenCV
 - MediaPipe
-- SciPy
-- Imutils
 
 ## Installation
 

@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import time
-from scipy.spatial import distance as dist
 from config.config import FACE_CASCADE_PATH, EYE_CASCADE_PATH, EYE_AR_THRESH, EYE_AR_CONSEC_FRAMES
 from src.detectors import FaceDetector, EyeDetector
 from src.eye_status import EyeStatus

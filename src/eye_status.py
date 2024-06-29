@@ -1,4 +1,3 @@
-from scipy.spatial import distance as dist
 from config.config import EYE_AR_THRESH, EYE_AR_CONSEC_FRAMES
 
 class EyeStatus:
